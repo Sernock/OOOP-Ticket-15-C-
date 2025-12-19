@@ -72,6 +72,88 @@ public:
 };
 ```
 
+### IntArray
+
+**Назначение:** контейнер динамического массива, реализованный вручную  
+(без использования стандартных контейнеров STL).
+
+**Поля:**
+- `int* data_` — динамический массив;
+- `int size_` — количество элементов.
+
+**Методы:**
+- `IntArray()` — создаёт пустой контейнер;
+- `IntArray(int n)` — выделяет память под `n` элементов;
+- `IntArray(const IntArray&)`, `operator=` — корректное копирование (глубокая копия);
+- `~IntArray()` — освобождение памяти;
+- `operator[]` — доступ к элементу по индексу;
+- `begin()` / `end()` — получение итераторов на начало и конец контейнера.
+
+```cpp
+class IntArray {
+    int* data_;
+    int size_;
+
+public:
+    IntArray();
+    explicit IntArray(int n);
+    IntArray(const IntArray& other);
+    IntArray& operator=(const IntArray& other);
+    ~IntArray();
+
+    int& operator[](int i);
+
+    Iterator begin();
+    Iterator end();
+};
+```
+### Matrix
+
+**Назначение:** матрица целых чисел с операциями сравнения, сложения  
+и умножения на число.
+
+**Поля:**
+- `int rows_` — число строк;
+- `int cols_` — число столбцов;
+- `IntArray data_` — хранение элементов в одномерном виде.
+
+**Индексация (2D → 1D):**
+- элемент `(row, column)` хранится по индексу:
+
+
+**Методы и операции:**
+- `Matrix(r, c)` — создаёт матрицу размера `r × c`;
+- `at(r, c)` — доступ к элементу;
+- `begin()` / `end()` — итераторы для обхода всех элементов;
+- `operator==` — сравнение матриц поэлементно (при одинаковом размере);
+- `operator+` — сложение матриц поэлементно (при одинаковом размере);
+- `operator*` — умножение каждого элемента на число `k`.
+
+```cpp
+class Matrix {
+    int rows_;
+    int cols_;
+    IntArray data_;
+
+    int index(int r, int c) const;
+
+public:
+    Matrix(int r, int c);
+
+    int rows() const;
+    int cols() const;
+
+    int& at(int r, int c);
+
+    Iterator begin();
+    Iterator end();
+
+    bool operator==(Matrix& other);
+    Matrix operator+(Matrix& other);
+    Matrix operator*(int k);
+};
+```
+
 ## Реализация паттерна Iterator
 Паттерн Iterator нужен для последовательного обхода элементов контейнера без раскрытия его внутреннего устройства.
 
