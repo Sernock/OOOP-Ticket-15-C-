@@ -154,7 +154,7 @@ public:
 };
 ```
 
-## Реализация паттерна Iterator
+## 4.Реализация паттерна Iterator
 Паттерн Iterator нужен для последовательного обхода элементов контейнера без раскрытия его внутреннего устройства.
 
 В проекте:
@@ -189,3 +189,26 @@ public:
 
 
 ## Структура проекта
+
+```
+C:.
+│   .gitignore
+│   app.exe
+│   main.cpp
+│   README.md
+│   report.txt
+│
+├───include
+│       FileOutput.h
+│       IntArray.h
+│       Iterator.h
+│       Matrix.h
+│       RandomFill.h
+│
+└───src
+        FileOutput.cpp
+        IntArray.cpp
+        Iterator.cpp
+        Matrix.cpp
+        RandomFill.cpp
+```
