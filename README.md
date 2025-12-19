@@ -70,7 +70,7 @@ public:
     Iterator& operator++();
     bool operator!=(const Iterator& other) const;
 };
-
+```
 
 ## Реализация паттерна Iterator
 Паттерн Iterator нужен для последовательного обхода элементов контейнера без раскрытия его внутреннего устройства.
